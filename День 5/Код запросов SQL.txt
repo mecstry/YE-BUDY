@@ -1,0 +1,125 @@
+CREATE DATABASE Zadanie22
+go
+USE Zadanie22
+go
+
+CREATE TABLE Predmeti(
+Kod_predmeta int PRIMARY KEY,
+Nazvanie_predmeta varchar(255),
+Predmeti INT FOREIGN KEY REFERENCES Ocenki (Nazvanie_predmeta)
+INSERT INTO Predmeti(Kod_predmeta, Nazvanie_predmeta, Predmeti) VALUES ('2332', 'Математика', '23112');
+INSERT INTO Predmeti(Kod_predmeta, Nazvanie_predmeta, Predmeti) VALUES ('424', 'Высшая Математика', '2322');
+INSERT INTO Predmeti(Kod_predmeta, Nazvanie_predmeta, Predmeti) VALUES ('2131', 'Информатика', '2441');
+INSERT INTO Predmeti(Kod_predmeta, Nazvanie_predmeta, Predmeti) VALUES ('942', 'Экономика', '20032');
+INSERT INTO Predmeti(Kod_predmeta, Nazvanie_predmeta, Predmeti) VALUES ('2', 'Роботехника', '2');
+);
+CREATE TABLE Otmetka(
+Kod_otmetki int PRIMARY KEY,
+Cifra int,
+Naimenovanie varchar(255),
+Otmetka INT FOREIGN KEY REFERENCES Ocenki (Kod_otmetki)
+INSERT INTO Otmetka(Kod_otmetki, Cifra, Naimenovanie,Otmetka) VALUES ('221', '2', 'Математика', '5');
+INSERT INTO Otmetka(Kod_otmetki, Cifra, Naimenovanie,Otmetka) VALUES ('271', '5', '"Высшая математика', '4');
+INSERT INTO Otmetka(Kod_otmetki, Cifra, Naimenovanie,Otmetka) VALUES ('201', '7', 'Информатика', '5');
+INSERT INTO Otmetka(Kod_otmetki, Cifra, Naimenovanie,Otmetka) VALUES ('231', '9', 'Экономика', '3');
+INSERT INTO Otmetka(Kod_otmetki, Cifra, Naimenovanie,Otmetka) VALUES ('228', '1', 'Робототехника', '5');
+);
+CREATE TABLE Ocenki(
+Nomer_studencheskogo int,
+Ceccia int,
+Nazvanie_predmeta varchar(255) FOREIGN KEY REFERENCES Predmeti (Nazvanie_predmeta),
+Kod_otmetki int,
+INSERT INTO Ocenki(Nomer_studencheskogo,Ceccia,Nazvanie_predmeta,Kod_otmetki) VALUES ('20319', '9', 'Математика', '5');
+INSERT INTO Ocenki(Nomer_studencheskogo,Ceccia,Nazvanie_predmeta,Kod_otmetki) VALUES ('20312', '8', 'Высшая математика', '4');
+INSERT INTO Ocenki(Nomer_studencheskogo,Ceccia,Nazvanie_predmeta,Kod_otmetki) VALUES ('20342', '1', 'Экономика', '2');
+INSERT INTO Ocenki(Nomer_studencheskogo,Ceccia,Nazvanie_predmeta,Kod_otmetki) VALUES ('20311', '2', 'Робототехника', '3');
+INSERT INTO Ocenki(Nomer_studencheskogo,Ceccia,Nazvanie_predmeta,Kod_otmetki) VALUES ('20321', '4', 'Информатика', '5');
+);
+CREATE TABLE Fakultet(
+Nomer_Fakulteta int PRIMARY KEY,
+Nazvanie varchar(255),
+Fakultet INT FOREIGN KEY REFERENCES Spisok_studentov (Fakultet)
+INSERT INTO Fakultet(Nomer_Fakulteta,Nazvanie,Fakultet) VALUES ('32', 'ФФТ', 'Факультет Творческих Технологий');
+INSERT INTO Fakultet(Nomer_Fakulteta,Nazvanie,Fakultet) VALUES ('52', 'ФЭУ', 'Факультет Экологической Устойчивости');
+INSERT INTO Fakultet(Nomer_Fakulteta,Nazvanie,Fakultet) VALUES ('62', 'ФМИ', 'Факультет Мистических Исследований');
+INSERT INTO Fakultet(Nomer_Fakulteta,Nazvanie,Fakultet) VALUES ('72', 'ФИР', 'Факультет Инженерии Развлечений');
+INSERT INTO Fakultet(Nomer_Fakulteta,Nazvanie,Fakultet) VALUES ('92', 'ФГСИ', 'Факультет Глобальных Социальных Исследований');
+);
+CREATE TABLE Ceccii(
+Nomer_Ceccii int PRIMARY KEY,
+Cemectr varchar(255),
+Kurc int,
+Ceccii INT FOREIGN KEY REFERENCES Spisok_studentov (Kurc)
+INSERT INTO Ceccii(Nomer_Ceccii,Cemectr,Kurc,Ceccii) VALUES ('23', '1', '2','2');
+INSERT INTO Ceccii(Nomer_Ceccii,Cemectr,Kurc,Ceccii) VALUES ('44', '2', '3','1');
+INSERT INTO Ceccii(Nomer_Ceccii,Cemectr,Kurc,Ceccii) VALUES ('88', '1', '2','2');
+INSERT INTO Ceccii(Nomer_Ceccii,Cemectr,Kurc,Ceccii) VALUES ('73', '2', '4','1');
+INSERT INTO Ceccii(Nomer_Ceccii,Cemectr,Kurc,Ceccii) VALUES ('52', '1', '2','2');
+);
+CREATE TABLE Forma_Obuchenia(
+Kod_formi_obuchenia int PRIMARY KEY,
+Forma varchar(255),
+Forma_Obuchenia INT FOREIGN KEY REFERENCES Spisok_studentov(Forma_obuchenia)
+INSERT INTO Forma_Obuchenia(Kod_formi_obuchenia,Forma,Forma_Obuchenia) VALUES ('23124', 'Строгая форма', 'Очная');
+INSERT INTO Forma_Obuchenia(Kod_formi_obuchenia,Forma,Forma_Obuchenia) VALUES ('23174', 'Строгая форма', 'Заочная');
+INSERT INTO Forma_Obuchenia(Kod_formi_obuchenia,Forma,Forma_Obuchenia) VALUES ('23164', 'Строгая форма', 'Очная');
+INSERT INTO Forma_Obuchenia(Kod_formi_obuchenia,Forma,Forma_Obuchenia) VALUES ('23114', 'Строгая форма', 'Заочная');
+INSERT INTO Forma_Obuchenia(Kod_formi_obuchenia,Forma,Forma_Obuchenia) VALUES ('23184', 'Строгая форма', 'Очная');
+);
+CREATE TABLE Spisok_studentov(
+Nomer_studencheskogo int PRIMARY KEY,
+Familia varchar(255),
+Imia varchar(255),
+Fakultet varchar(255),
+Specialnost varchar(255),
+Nomer_gruppi int,
+Kurc int,
+Forma_Obuchenia varchar(255),
+Pol varchar(255),
+Brak varchar(255),
+Kod_pari int
+Spisok_studentov INT FOREIGN KEY REFERENCES Ocenki (Nomer_studencheskogo)
+INSERT INTO Spisok_studentov(Nomer_studencheskogo,Familia,Imia,Fakultet,Specialnost,Nomer_gruppi,Kurc,Forma_Obuchenia,Pol,Brak,Kod_pari) VALUES ('23184', 'Суйэндык', 'Арсен','ФТТ','Факультет Творческих Технологий','23','3','Очная','Муж','Не женат','24');
+INSERT INTO Spisok_studentov(Nomer_studencheskogo,Familia,Imia,Fakultet,Specialnost,Nomer_gruppi,Kurc,Forma_Obuchenia,Pol,Brak,Kod_pari) VALUES ('23185', 'Кузнеченков', 'Борис','ФЭУ','Факультет Экологической Устойчивости','25','1','Очная','Муж','Женат','33');
+INSERT INTO Spisok_studentov(Nomer_studencheskogo,Familia,Imia,Fakultet,Specialnost,Nomer_gruppi,Kurc,Forma_Obuchenia,Pol,Brak,Kod_pari) VALUES ('23164', 'Сегоднеков', 'Максим','ФИР','Факультет Инженерии Развлечений','21','3','Зачная','Муж','Не женат','76');
+INSERT INTO Spisok_studentov(Nomer_studencheskogo,Familia,Imia,Fakultet,Specialnost,Nomer_gruppi,Kurc,Forma_Obuchenia,Pol,Brak,Kod_pari) VALUES ('23174', 'Кузнецов', 'Матвей','ФКИ','Факультет Кулинарных Исследований','22','2','Очная','Муж','Не женат','98');
+INSERT INTO Spisok_studentov(Nomer_studencheskogo,Familia,Imia,Fakultet,Specialnost,Nomer_gruppi,Kurc,Forma_Obuchenia,Pol,Brak,Kod_pari) VALUES ('23124', 'Беляева', 'Анна','ФКБ','Факультет Кибернетической Биологии','24','3','Заочная','Жен','Жената','87');
+);
+CREATE TABLE Pol(
+Kod_pola int PRIMARY KEY,
+Pol varchar(255),
+Pol INT FOREIGN KEY REFERENCES Spisok_studentov (Pol)
+INSERT INTO Pol(Kod_pola,Pol) VALUES ('12', 'Мужской');
+INSERT INTO Pol(Kod_pola,Pol) VALUES ('44', 'Женский');
+INSERT INTO Pol(Kod_pola,Pol) VALUES ('33', 'Мужской');
+INSERT INTO Pol(Kod_pola,Pol) VALUES ('32', 'Женский');
+INSERT INTO Pol(Kod_pola,Pol) VALUES ('22', 'Мужской');
+);
+CREATE TABLE Specialnost(
+Nomer_specialnosti int PRIMARY KEY,
+Nazvanie varchar(255),
+Specialnost INT FOREIGN KEY REFERENCES Spisok_studentov (Specialnost)
+INSERT INTO Specialnost(Nomer_specialnosti,Nazvanie) VALUES ('12', 'Факультет Творческих Технологий');
+INSERT INTO Specialnost(Nomer_specialnosti,Nazvanie) VALUES ('13', 'Факультет Творческих Технологий');
+INSERT INTO Specialnost(Nomer_specialnosti,Nazvanie) VALUES ('52', 'Факультет Творческих Технологий');
+INSERT INTO Specialnost(Nomer_specialnosti,Nazvanie) VALUES ('72', 'Факультет Творческих Технологий');
+INSERT INTO Specialnost(Nomer_specialnosti,Nazvanie) VALUES ('69', 'Факультет Творческих Технологий');
+);
+CREATE TABLE Brak(
+Kod_pari int PRIMARY KEY,
+Imia_jeni varchar(255),
+Fakultet_jeni varchar(255),
+Nomer_studencheskogo_jeni int,
+Forma_obuchenia_jeni varchar(255),
+Familia_muja varchar(255),
+Imia_muja varchar(255),
+Fakultet_muja varchar(255),
+Nomer_studencheskogo_muja int, 
+Forma_obuchenia_muja varchar(255),
+Brak INT FOREIGN KEY REFERENCES Spisok_studentov (Kod_pari)
+INSERT INTO Brak(Kod_pari,Imia_jeni,Fakultet_jeni,Nomer_studencheskogo_jeni,Forma_obuchenia_jeni,Familia_muja,Imia_muja,Fakultet_muja,Nomer_studencheskogo_muja,Forma_obuchenia_muja) VALUES ('21', 'Юля','Творческих технологий','1231','Очная','Алексеев','Творческих технологий','2313','Очная',);
+INSERT INTO Brak(Kod_pari,Imia_jeni,Fakultet_jeni,Nomer_studencheskogo_jeni,Forma_obuchenia_jeni,Familia_muja,Imia_muja,Fakultet_muja,Nomer_studencheskogo_muja,Forma_obuchenia_muja) VALUES ('21', 'Юля','Творческих технологий','1231','Очная','Алексеев','Творческих технологий','2313','Очная',);
+INSERT INTO Brak(Kod_pari,Imia_jeni,Fakultet_jeni,Nomer_studencheskogo_jeni,Forma_obuchenia_jeni,Familia_muja,Imia_muja,Fakultet_muja,Nomer_studencheskogo_muja,Forma_obuchenia_muja) VALUES ('21', 'Юля','Творческих технологий','1231','Очная','Алексеев','Творческих технологий','2313','Очная',);
+INSERT INTO Brak(Kod_pari,Imia_jeni,Fakultet_jeni,Nomer_studencheskogo_jeni,Forma_obuchenia_jeni,Familia_muja,Imia_muja,Fakultet_muja,Nomer_studencheskogo_muja,Forma_obuchenia_muja) VALUES ('21', 'Юля','Творческих технологий','1231','Очная','Алексеев','Творческих технологий','2313','Очная',);
+INSERT INTO Brak(Kod_pari,Imia_jeni,Fakultet_jeni,Nomer_studencheskogo_jeni,Forma_obuchenia_jeni,Familia_muja,Imia_muja,Fakultet_muja,Nomer_studencheskogo_muja,Forma_obuchenia_muja) VALUES ('21', 'Юля','Творческих технологий','1231','Очная','Алексеев','Творческих технологий','2313','Очная',);
+);
